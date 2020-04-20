@@ -54,10 +54,10 @@ function Map() {
       >
         {locationsData.features.map((loc) => (
           <Marker
-            key={loc.properties.LOC_ID}
+            key={loc._id}
             position={{
-              lat: loc.geometry.coordinates[0],
-              lng: loc.geometry.coordinates[1],
+              lat: loc.gps[0],
+              lng: loc.gps[1],
             }}
             onClick={() => {
               setSelectedLoc(loc);
@@ -74,17 +74,17 @@ function Map() {
         {selectedLoc && (
           <InfoWindow
             position={{
-              lat: selectedLoc.geometry.coordinates[0],
-              lng: selectedLoc.geometry.coordinates[1],
+              lat: selectedLoc.gps[0],
+              lng: selectedLoc.gps[1],
             }}
             onCloseClick={() => {
               setSelectedLoc(null);
             }}
           >
             <div>
-              <h2>{selectedLoc.properties.NAME}</h2>
-              <p>{selectedLoc.properties.DESCRIPTION}</p>
-              <p>{selectedLoc.properties.ADRESS}</p>
+              <h2>{selectedLoc.name}</h2>
+              <p>{selectedLoc.description}</p>
+              <p>{selectedLoc.address}</p>
             </div>
           </InfoWindow>
         )}
